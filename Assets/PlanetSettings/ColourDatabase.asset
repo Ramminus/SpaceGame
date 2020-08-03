@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261d2f0be1e395f49b6483a7276abb00, type: 3}
+  m_Name: ColourDatabase
+  m_EditorClassIdentifier: 
+  waterMaterial: {fileID: 2100000, guid: 6f159f42ca675ff4fb7a2e491f550c7f, type: 2}
+  colours:
+  - {fileID: 11400000, guid: 757682187d90f5040858543d9f6d7fa1, type: 2}
+  - {fileID: 11400000, guid: ab8831e1bee79a24184a286cebd6884c, type: 2}
+  - {fileID: 11400000, guid: a3ed4003fe8129c4ea21ccdcc029cb93, type: 2}
+  - {fileID: 11400000, guid: 40501bf0691929f4b97622dc56972565, type: 2}
+  - {fileID: 11400000, guid: 5238826d3e79d6b43829143b3691c21f, type: 2}
+  - {fileID: 11400000, guid: 40501bf0691929f4b97622dc56972565, type: 2}
+  waterMaterials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  lowQualityWaterMaterials:
+  - {fileID: 2100000, guid: c5836ac56a8c7c4498e9f380b86b5604, type: 2}
+  - {fileID: 2100000, guid: 53eb8ce0c8510e647a6ef9c665cc928b, type: 2}
+  - {fileID: 2100000, guid: 41ea3d666391b144e9be6c32127a7ac3, type: 2}
+  - {fileID: 2100000, guid: 2e9ab893938bd954d9776f5deebe746e, type: 2}
+  waterColours:
+  - waterColour: {r: 1, g: 0, b: 0, a: 0}
+    foamColour: {r: 1.7411011, g: 0.5394, b: 0.5394, a: 0}
+  - waterColour: {r: 0, g: 0.82210016, b: 1, a: 0}
+    foamColour: {r: 0.96400577, g: 2.189284, b: 1.9460304, a: 0}
+  - waterColour: {r: 1, g: 0.9674624, b: 0, a: 0}
+    foamColour: {r: 2.6390157, g: 1.5834094, b: 0, a: 0}
+  - waterColour: {r: 1, g: 0, b: 0.96657753, a: 0}
+    foamColour: {r: 2.6390157, g: 0, b: 0.90037006, a: 0}

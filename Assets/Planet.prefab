@@ -1,0 +1,301 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &503604097427911416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503604097427911418}
+  - component: {fileID: 503604097427911419}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503604097427911418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503604097427911416}
+  m_LocalRotation: {x: -0, y: 0.9891445, z: -0, w: 0.14694634}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.32, y: 1.32, z: 1.32}
+  m_Children: []
+  m_Father: {fileID: 503604097596465712}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &503604097427911419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503604097427911416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91ccdc5b0df781468f88e09729b7eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribeToLod: 1
+  chunkPrefab: {fileID: 8586379757256003631, guid: 16ae934914acadf4a9a5e77fdf60bffb,
+    type: 3}
+  useThreading: 0
+  isWater: 1
+  waterObj: {fileID: 0}
+  lowWaterObj: {fileID: 0}
+  randomize: 0
+  resolution: 1
+  resolutionMultiplier: 8
+  atmosphereMultiplier: 1.2
+  sphereSize: 0
+  chunksPerFace: 4
+  minMax:
+    min: 0.9999999
+    max: 1.0000001
+  mat: {fileID: 0}
+  debugMaterialMode: 0
+  col: {fileID: 0}
+  shader: {fileID: 7200000, guid: 01c646f5c9019fc40b57b2815b12ebed, type: 3}
+  waterShader: {fileID: 7200000, guid: c4837dbfc1c28b14aa22cfda923755f3, type: 3}
+  shapeFoldout: 1
+  coloutFoldout: 0
+  shapeSettings:
+    planetSize: 1
+    noiseLayers:
+    - enabled: 1
+      noiseSettings:
+        noiseType: 0
+        useFirstLayerAsMask: 0
+        strength: 0
+        numberOfLayers: 1
+        baseRoughness: 0
+        roughness: 0
+        persistence: 0
+        centre: {x: 0, y: 0, z: 0}
+        minValue: 0
+  colourSettings: {fileID: 11400000, guid: 757682187d90f5040858543d9f6d7fa1, type: 2}
+  planetScaler: {fileID: 0}
+--- !u!1 &503604097596465718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503604097596465712}
+  - component: {fileID: 503604097596465713}
+  - component: {fileID: 503604097596465715}
+  m_Layer: 0
+  m_Name: Planet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503604097596465712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503604097596465718}
+  m_LocalRotation: {x: 0, y: -0.9891445, z: 0, w: 0.14694634}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 503604097427911418}
+  - {fileID: 503604098324071892}
+  - {fileID: 4536930848007295291}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -163.1, z: 0}
+--- !u!114 &503604097596465713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503604097596465718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91ccdc5b0df781468f88e09729b7eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribeToLod: 1
+  chunkPrefab: {fileID: 8586379757256003631, guid: 16ae934914acadf4a9a5e77fdf60bffb,
+    type: 3}
+  useThreading: 0
+  isWater: 0
+  waterObj: {fileID: 503604097427911419}
+  lowWaterObj: {fileID: 5680267523205007361}
+  randomize: 1
+  resolution: 1
+  resolutionMultiplier: 8
+  atmosphereMultiplier: 1.2
+  sphereSize: 4000000
+  chunksPerFace: 4
+  minMax:
+    min: 1.2620807
+    max: 1.5386417
+  mat: {fileID: 2100000, guid: 06c36e59d401b0547a5d0ed742fcb3b3, type: 2}
+  debugMaterialMode: 0
+  col: {fileID: 503604098324071895}
+  shader: {fileID: 7200000, guid: 01c646f5c9019fc40b57b2815b12ebed, type: 3}
+  waterShader: {fileID: 7200000, guid: c4837dbfc1c28b14aa22cfda923755f3, type: 3}
+  shapeFoldout: 1
+  coloutFoldout: 1
+  shapeSettings:
+    planetSize: 1
+    noiseLayers: []
+  colourSettings: {fileID: 11400000, guid: 757682187d90f5040858543d9f6d7fa1, type: 2}
+  planetScaler: {fileID: 503604097596465715}
+--- !u!114 &503604097596465715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503604097596465718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032aa50b253b8e447956ead0785cbf70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetWorldPos:
+    x: 20000000
+    y: 0
+    z: 0
+--- !u!1 &503604098324071893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503604098324071892}
+  - component: {fileID: 503604098324071895}
+  m_Layer: 8
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503604098324071892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503604098324071893}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 503604097596465712}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &503604098324071895
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503604098324071893}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4260157331616739829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4536930848007295291}
+  - component: {fileID: 5680267523205007361}
+  m_Layer: 0
+  m_Name: Low Poly Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4536930848007295291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260157331616739829}
+  m_LocalRotation: {x: -0, y: 0.9891445, z: -0, w: 0.14694634}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.32, y: 1.32, z: 1.32}
+  m_Children: []
+  m_Father: {fileID: 503604097596465712}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5680267523205007361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260157331616739829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91ccdc5b0df781468f88e09729b7eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribeToLod: 0
+  chunkPrefab: {fileID: 8586379757256003631, guid: 16ae934914acadf4a9a5e77fdf60bffb,
+    type: 3}
+  useThreading: 0
+  isWater: 1
+  waterObj: {fileID: 0}
+  lowWaterObj: {fileID: 0}
+  randomize: 0
+  resolution: 4
+  resolutionMultiplier: 8
+  atmosphereMultiplier: 1.2
+  sphereSize: 1
+  chunksPerFace: 2
+  minMax:
+    min: 0.9999999
+    max: 1.0000001
+  mat: {fileID: 0}
+  debugMaterialMode: 0
+  col: {fileID: 0}
+  shader: {fileID: 7200000, guid: 01c646f5c9019fc40b57b2815b12ebed, type: 3}
+  waterShader: {fileID: 7200000, guid: c4837dbfc1c28b14aa22cfda923755f3, type: 3}
+  shapeFoldout: 1
+  coloutFoldout: 0
+  shapeSettings:
+    planetSize: 1
+    noiseLayers:
+    - enabled: 1
+      noiseSettings:
+        noiseType: 0
+        useFirstLayerAsMask: 0
+        strength: 0
+        numberOfLayers: 1
+        baseRoughness: 0
+        roughness: 0
+        persistence: 0
+        centre: {x: 0, y: 0, z: 0}
+        minValue: 0
+  colourSettings: {fileID: 11400000, guid: 757682187d90f5040858543d9f6d7fa1, type: 2}
+  planetScaler: {fileID: 0}
