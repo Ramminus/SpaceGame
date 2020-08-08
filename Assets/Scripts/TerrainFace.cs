@@ -60,8 +60,12 @@ public class TerrainFace : MonoBehaviour
 
     [SerializeField,ReadOnly]
     bool active;
+    [SerializeField, ReadOnly]
     bool created;
+    [SerializeField, ReadOnly]
     bool built;
+    [SerializeField, ReadOnly]
+    bool createdChildren;
     // Start is called before the first frame update
 
 
@@ -78,15 +82,16 @@ public class TerrainFace : MonoBehaviour
         if (!isRoot) parentLod = SolarSystemManager.instance.GetQuadTreeLODIndex(quadTreeParent.ChunkPosition, sphereSize, planet.isWater);
 
 
-        if (!isRoot && quadTreeParent.quadTreeLod < parentLod)
+        if (!isRoot && quadTreeParent.quadTreeLod <= parentLod)
         {
             quadTreeParent.ActivateChunk();
+            
             Debug.Log("Decreaseing LOD");
-            return;
+      
         }
         else
         {
-            if ((index < quadTreeLod)) CreateQuadTreeChildren();
+            if ((index < quadTreeLod) && !createdChildren) CreateQuadTreeChildren();
          
         }
 
@@ -95,7 +100,30 @@ public class TerrainFace : MonoBehaviour
 
 
     }
-
+    /// <summary>
+    /// Used to check if to disable the parent
+    /// </summary>
+    /// <returns></returns>
+    public bool ReadyToDisableParent()
+    {
+        return created;
+    }
+    [Button]
+    public void CheckChildrenAreReady()
+    {
+        if (quadTreeParent != null) quadTreeParent.CheckChildrenAreReady();
+        if (!active || quadTreeChildren == null) return;
+        foreach(TerrainFace face in quadTreeChildren)
+        {
+            if (!face.ReadyToDisableParent()) return;
+        }
+        ClearMesh();
+        foreach(TerrainFace face in quadTreeChildren)
+        {
+            face.ActivateChunk(false);
+        }
+       
+    }
     public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp, float sphereSize)
     {
         this.mesh = mesh;
@@ -122,8 +150,8 @@ public class TerrainFace : MonoBehaviour
         chunkOffset = localUp + (percent.x - 0.5f) * 2 * axisA + (percent.y - 0.5f) * 2 * axisB;
         chunkOffset = planet.isWater ? Vector3.Normalize(chunkOffset) * planet.transform.localScale.x : Vector3.Normalize(chunkOffset) * planet.SphereSize;
         currentLodindex = SolarSystemManager.instance.lodSettings.Length - 1;
-
-        if (planet.isWater) Debug.Log(transform.localScale.x);
+        if (!planet.isWater) gameObject.layer = 8;
+    
 
     }
     public void Init(ShapeGenerator shapeGenerator, Transform parent, Material mat, int resolution, Vector3 localUp, float sphereSize)
@@ -150,6 +178,7 @@ public class TerrainFace : MonoBehaviour
         if (planet.subscribeToLod) GlobalVariables.OnUpdatePlayerPos += CheckChunkPositions;
         if (quadTreeLod > 1) col.enabled = false;
         quadTreeChildren = new TerrainFace[4];
+        if (!planet.isWater) gameObject.layer = 8;
 
     }
 
@@ -307,14 +336,19 @@ public class TerrainFace : MonoBehaviour
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
         mesh.uv = uvs;
-
+     
         if (quadTreeLod == 0 && !planet.isWater)
         {
             col = gameObject.AddComponent<MeshCollider>();
         }
         if (firstInitilization) planet.OnCompleteRender();
         created = true;
-        if (quadTreeParent != null) quadTreeParent.ChildReady();
+        if (quadTreeParent != null)
+        {
+
+        
+            quadTreeParent.CheckChildrenAreReady();
+        }
         // GetComponent<MeshCollider>().sharedMesh = mesh;
     }
     public void ConstructMeshWater()
@@ -368,10 +402,12 @@ public class TerrainFace : MonoBehaviour
         
         if (firstInitilization) planet.OnCompleteRender();
         created = true;
-        if (quadTreeParent != null && !built)
+       
+        if (quadTreeParent != null)
         {
-            quadTreeParent.ChildReady();
-            built = true;
+
+        
+            quadTreeParent.CheckChildrenAreReady();
         }
         // GetComponent<MeshCollider>().sharedMesh = mesh;
     }
@@ -381,29 +417,28 @@ public class TerrainFace : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(ChunkPosition, planet.SphereSize / chunksPerFace);
     }
- 
-    struct MeshThreadInfo<T>
-    {
-        public Action<T> callback;
-        public T data;
 
-        public MeshThreadInfo(Action<T> callback, T data)
-        {
-            this.callback = callback;
-            this.data = data;
-        }
-    }
     [Button]
     public void GenerateCollider()
     {
         MeshCollider col = gameObject.AddComponent<MeshCollider>();
         col.sharedMesh = mesh;
     }
-    public void ClearMesh()
+    public void ClearMesh(bool disableChildren = false)
     {
+        if (!active) return;
         meshRenderer.enabled = false;
         if (col) col.enabled = false;
         active = false;
+        createdChildren = false;
+        if(quadTreeChildren != null)
+        {
+            foreach(TerrainFace face in quadTreeChildren)
+            {
+                if(face != null)
+                    face.ClearMesh(disableChildren);
+            }
+        }
     }
     public void ActivateChunk(bool disableChildren = true)
     {
@@ -411,11 +446,11 @@ public class TerrainFace : MonoBehaviour
         meshRenderer.enabled = true;
         if (col) col.enabled = true;
         active = true;
-        ConstructMesh();
+        //ConstructMesh();
         if (!disableChildren) return;
         foreach(TerrainFace face in quadTreeChildren)
         {
-            if(face!=null)face.ClearMesh();
+            if(face!=null)face.ClearMesh(true);
         }
     }
     public void ChildReady()
@@ -434,15 +469,18 @@ public class TerrainFace : MonoBehaviour
     public void CreateQuadTreeChildren()
     {
         if (quadTreeLod == 0) return;
-        ClearMesh();
-       
+       // ClearMesh();
+        createdChildren = true;
+   
         float offSet = 1f/(chunksPerFace*2f);
         for (int i = 0; i < 4; i++)
         {
             if (quadTreeChildren[i] != null)
             {
-                quadTreeChildren[i].ActivateChunk();
-
+                ClearMesh();
+                quadTreeChildren[i].ActivateChunk(false);
+                quadTreeChildren[i].CheckChunkPositions();
+               
             }
             else
             {
@@ -462,14 +500,16 @@ public class TerrainFace : MonoBehaviour
                 quadTreeChildren[i].Init(shapeGenerator, transform, meshRenderer.sharedMaterial, SolarSystemManager.instance.quadTreeLODs[quadTreeLod - 1].resolution, localUp, sphereSize);
                 quadTreeChildren[i].quadTreeLod = quadTreeLod - 1;
                 quadTreeChildren[i].quadTreeParent = this;
-                quadTreeChildren[i].ExecuteCompute();
                 quadTreeChildren[i].CheckChunkPositions();
+                quadTreeChildren[i].ExecuteCompute();
+             
                 quadTreeChildren[i].ClearMesh();
                 
             }
 
         }
-     
+       
+
     }
 }
 

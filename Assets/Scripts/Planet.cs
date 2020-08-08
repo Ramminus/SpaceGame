@@ -384,7 +384,7 @@ public class Planet : MonoBehaviour
         {
             colourSettings = GlobalVariables.instance.colourDatabase.GetRandomColourSettings();
             
-            chunksPerFace = SolarSystemManager.instance.chunkSettings[SolarSystemManager.instance.chunkSettings.Length - 1].resolution;
+            chunksPerFace = SolarSystemManager.instance.GetPlanetStartFaces(SphereSize);
             currentChunkLODindex = SolarSystemManager.instance.chunkSettings.Length - 1;
 
         }

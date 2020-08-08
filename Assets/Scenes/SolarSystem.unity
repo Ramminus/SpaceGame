@@ -155,7 +155,7 @@ MonoBehaviour:
   planetPrefab: {fileID: 503604097596465713, guid: 23b43dfca7c914940a8dbdc4d6afe199,
     type: 3}
   minSphereSize: 40000
-  maxSphereSize: 60000
+  maxSphereSize: 600000
   lodSettings:
   - resolution: 31
     distanceThreshold: 0.05
@@ -200,11 +200,13 @@ MonoBehaviour:
     distanceThreshold: 30000
   - resolution: 1
     distanceThreshold: 0
-  nodeSize: 150000
-  startPoint: 120000
+  nodeSize: 600000
+  startPoint: 600000
   maxPlanets: 5
   gridStart: 0
   planetsInSolarSystem: []
+  minFacesOnPlanet: 4
+  maxFacesOnPlanet: 10
 --- !u!4 &1564696613
 Transform:
   m_ObjectHideFlags: 0
@@ -304,10 +306,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138677391}
-  m_LocalRotation: {x: 0.6147648, y: 0.12752502, z: -0.34937692, w: 0.6955123}
+  m_LocalRotation: {x: 0.13545617, y: 0.020627115, z: -0.97861373, w: 0.1534319}
   m_LocalPosition: {x: 0.24, y: 3, z: 4.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 109.22, y: 130, z: 90}
+  m_LocalEulerAnglesHint: {x: 4.7, y: 344.95, z: 1637.2}

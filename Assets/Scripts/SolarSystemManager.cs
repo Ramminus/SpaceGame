@@ -24,7 +24,8 @@ public class SolarSystemManager : MonoBehaviour
     [SerializeField]
     Planet[] planetsInSolarSystem;
     System.Action OnCompleteCoroutine;
-
+    [SerializeField]
+    int minFacesOnPlanet, maxFacesOnPlanet;
     public static SolarSystemManager instance;
     int index = -1;
     int completedPlanets = 0;
@@ -75,6 +76,11 @@ public class SolarSystemManager : MonoBehaviour
             }
         }
         return lodSettings.Length - 1;
+    }
+    public int GetPlanetStartFaces(float planetSize)
+    {
+        float t = Mathf.InverseLerp(minSphereSize, maxSphereSize, planetSize);
+        return Mathf.FloorToInt(Mathf.Lerp(minFacesOnPlanet, maxFacesOnPlanet, t));
     }
     public int GetQuadTreeLODIndex(Vector3 terrainFacePos, float sphereSize, bool isWater)
     {
